@@ -11,12 +11,14 @@ function Register() {
         userName: '',//اكتبيهن نفس ما بده الباك اند
         email: '',
         password: '',
+        image:'',
 
     }
     const handleFieldChange = (event) => {
         formik.setFieldValue('image', event.target.files[0])
 
     }
+    
 
     const onSubmit = async users => {
 
@@ -27,8 +29,12 @@ function Register() {
         formData.append("image", users.image)
 
         const { data } = await axios.post(`https://ecommerce-node4.vercel.app/auth/signup`, formData)
+      
         if (data.message == "success") {
-            formik.resetForm()//افرغ الفورم لما بدي اجي اسجل من جديد 
+            formik.resetForm();//افرغ الفورم لما بدي اجي اسجل من جديد 
+           // console.log(formik)
+        
+
             toast('account created successfully , please verify your e-mail to login'), {
                 position: "top-right",
                 autoClose: 5000,
@@ -42,7 +48,7 @@ function Register() {
 
 
         }
-        console.log(data)
+       // console.log(data)
     }
 
 
@@ -84,11 +90,13 @@ function Register() {
             name: 'image',
             title: 'user image',
             onChange: handleFieldChange// لما يصير تغيير عالانبوت ناديلي هالفنكشن
-        }
+        },
         // الفاليو الي بتنحط جوا الانبوت احنا بنحطها 
 
 
     ]
+   // console.log(formik.resetForm)
+
     const renderInputs = inputs.map((input, index) =>
         <Input type={input.type}
             id={input.id}
@@ -104,7 +112,7 @@ function Register() {
         <>
             <div className="container pb-5 ">
                 <h2 className='text-center mt-3'> ~ Create Account ~</h2>
-                <form onSubmit={formik.handleSubmit} encType='mulipart/form-dta' className='w-50 border p-2 m-auto bg-success-subtle rounded'>
+                <form onSubmit={formik.handleSubmit} encType='multipart/form-data' className='w-50 border p-2 m-auto bg-success-subtle rounded'>
                     {renderInputs}
                     <button type='submit' disabled={!formik.isValid} className='d-flex m-auto px-5'>register</button>
                 </form>

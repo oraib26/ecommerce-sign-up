@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Input({type = 'text', id, title, name, value, onChange,errors,onBlur,touched}) {
-    console.log(touched)
+    //console.log(touched)
     return (
         <>
             <div className="input-group- mb-3 ">
