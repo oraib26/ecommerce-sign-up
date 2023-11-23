@@ -1,7 +1,7 @@
 import React from 'react'
 import Input from '../../pages/Input.jsx'
 import { useFormik } from 'formik'
-import { registerschema } from '../validation/validate.jsx'
+import { registerschema } from '../validation/Validate.js'
 import axios from 'axios'
 import { toast } from 'react-toastify';
 
